@@ -1,0 +1,308 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f0f2f5;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* ── outer card shell ──────────────────────────────────────────────────────── */
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+}
+
+/* ── card visual (the little card preview) ─────────────────────────────────── */
+
+.card-visual {
+  margin: 1.25rem 1.25rem 0;
+  border-radius: 12px;
+  padding: 1.25rem 1.375rem;
+  color: #fff;
+  aspect-ratio: 85.6 / 53.98;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background 0.35s ease;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle glare overlay */
+.card-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0) 55%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+  pointer-events: none;
+}
+
+.card-visual__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.card-visual__chip {
+  width: 38px;
+  height: 28px;
+  background: linear-gradient(135deg, #c8960c 0%, #f0d060 50%, #d4af37 100%);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 6px 5px;
+}
+
+.card-visual__chip-line {
+  height: 2px;
+  background: rgba(0, 0, 0, 0.22);
+  border-radius: 1px;
+}
+
+.card-visual__network {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  opacity: 0.9;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+}
+
+.card-visual__number {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.2rem;
+  letter-spacing: 0.18em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* ── form body ──────────────────────────────────────────────────────────────── */
+
+.card-body {
+  padding: 1.5rem 1.75rem 2rem;
+}
+
+h1 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.2rem;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 1.75rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #374151;
+  letter-spacing: 0.02em;
+}
+
+/* ── input with network pill ────────────────────────────────────────────────── */
+
+.input-wrap {
+  position: relative;
+}
+
+.input-wrap input {
+  width: 100%;
+  padding: 0.75rem 5rem 0.75rem 1rem;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  outline: none;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+  background: #fafafa;
+  color: #111;
+}
+
+.input-wrap input:focus {
+  border-color: #4f46e5;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.input-wrap input.is-complete {
+  border-color: #6366f1;
+}
+
+.network-pill {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  pointer-events: none;
+  text-transform: uppercase;
+  animation: fade-in 0.15s ease;
+}
+
+.network-pill--visa {
+  background: #1a237e;
+  color: #fff;
+}
+.network-pill--mastercard {
+  background: #1a1a2e;
+  color: #fff;
+}
+.network-pill--amex {
+  background: #004d40;
+  color: #fff;
+}
+.network-pill--discover {
+  background: #bf360c;
+  color: #fff;
+}
+
+.digit-hint {
+  font-size: 0.73rem;
+  color: #9ca3af;
+}
+
+/* ── button ──────────────────────────────────────────────────────────────────── */
+
+button {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  background: #4f46e5;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    transform 0.1s;
+  margin-top: 0.25rem;
+  letter-spacing: 0.01em;
+}
+
+button:hover:not(:disabled) {
+  background: #4338ca;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+button:disabled {
+  background: #a5b4fc;
+  cursor: not-allowed;
+}
+
+/* ── result ──────────────────────────────────────────────────────────────────── */
+
+.result {
+  margin-top: 1.25rem;
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  animation: slide-up 0.2s ease;
+}
+
+.result__icon {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.result__message {
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: inherit;
+}
+
+.result--valid {
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1.5px solid #86efac;
+}
+
+.result--invalid {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1.5px solid #fca5a5;
+}
+
+.result--error {
+  background: #fefce8;
+  color: #92400e;
+  border: 1.5px solid #fde68a;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+/* ── animations ──────────────────────────────────────────────────────────────── */
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

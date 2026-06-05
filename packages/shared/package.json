@@ -1,0 +1,12 @@
+{
+  "name": "@cc-validator/shared",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
