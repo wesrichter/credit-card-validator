@@ -2,8 +2,6 @@
 
 A small full-stack app that validates credit card numbers using the [Luhn algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm). Built with React, Express, and TypeScript in a pnpm monorepo.
 
-![card validator screenshot — a card preview updates as you type, showing the network and formatted number](https://placehold.co/800x420?text=screenshot)
-
 ---
 
 ## What it does
